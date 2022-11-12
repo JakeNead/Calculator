@@ -1,8 +1,10 @@
 body {
-    background: grey;
+    background: rgb(59, 60, 57);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0px;
     }
     
     .calculatorContainer {
@@ -13,40 +15,59 @@ body {
         height: 550px;
         min-height: 550px;;
         border: solid rgb(36, 36, 36) .3em;
-        border-radius: .3em;
+        border-radius: .5em;
         background: rgb(36, 36, 36);
     }
 
-    .output {
-        border-bottom: solid rgb(36, 36, 36) .1em;
-        background: rgb(185, 185, 185);
-        flex: 3;
-        font-size: 2.5rem;
-       
+    .outputScreen {
+        display: flex;
+        border: solid rgb(36, 36, 36) .2rem;
+        border-radius: .35rem;
+        background: #fefae0;
+        flex: 2;
+        font-size: 3.5rem;
+        justify-content: end;
+        align-items: center;
+        margin-bottom: .2rem;
     }
     
+    .outputNumber{
+        margin-right: .3em;
+    }
+
     .button-row {
         display:flex;
         flex: 2;
     }
 
-    
-        
     .button {
         display: flex;
-        background: rgb(0, 81, 0);
-        justify-content: center;
+        background: #606c38;
+        justify-content: space-evenly;
         align-items: center;
         flex: 1;
-        padding: 0px;
-        border-radius: .3em;
-        border: .05rem solid black;
+        border-radius: .2em;
+        font-size: 1.8rem;
+        margin: .1rem;
+        
     }
 
     .zero {
-        flex: 2;
-        /* flex: 2.05 */
+        flex: 2.23;
     }
 
+    .ac,
+    .posOrNeg,
+    .percent{
+        background: #3a4e23
+    }
+
+    .divide,
+    .multiply,
+    .subtract,
+    .addition,
+    .equal {
+        background: #bc6c25;
+    }
     
     
