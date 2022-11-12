@@ -38,13 +38,24 @@ let displayValue = 0
 const numberButtons = document.querySelectorAll('.num')
 const display = document.querySelector('.display')
 
-function input () {
-    numberButtons.forEach(node => {
-        node.addEventListener('click', (n) => {
+// Number buttons populate the screen and store the value in numberButtons
+
+numberButtons.forEach(node => {
+    node.addEventListener('click', () => {
+        if (displayValue == 0) {
             display.textContent = node.textContent
             displayValue = node.textContent
-        })
+        } else if (displayValue != 0){
+            display.textContent += node.textContent
+            displayValue += node.textContent
+        }
     })
-}
+})
 
-input()
+const ac = document.querySelector('.ac')
+ac.addEventListener('click', () => {
+    displayValue = 0
+    display.textContent = 0
+})
+
+
