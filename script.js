@@ -34,12 +34,10 @@ function operate (x,y,z) {
 }
 
 let displayValue = 0
-
-const numberButtons = document.querySelectorAll('.num')
 const display = document.querySelector('.display')
 
+const numberButtons = document.querySelectorAll('.num')
 // Number buttons populate the screen and store the value in numberButtons
-
 numberButtons.forEach(node => {
     node.addEventListener('click', () => {
         if (displayValue == 0) {
@@ -52,6 +50,7 @@ numberButtons.forEach(node => {
     })
 })
 
+// AC button event listener to clear the calculator
 const ac = document.querySelector('.ac')
 ac.addEventListener('click', () => {
     displayValue = 0
@@ -59,3 +58,10 @@ ac.addEventListener('click', () => {
 })
 
 
+//press number, assign dV and node
+//press plus, store first operand and operator in a variable
+    //event listener shows operator pressed and will clear before new nums
+//press second number, replaces dV and node
+//press more numbers if desired
+//press equal, call the operator func with both numbers
+//dV and node equal result
