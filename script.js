@@ -33,14 +33,18 @@ function operate (x,y,z) {
     }
 }
 
-//add events to display numbers after pressing buttons
+let displayValue = 0
 
-let displayNumber = 0;
+const numberButtons = document.querySelectorAll('.num')
+const display = document.querySelector('.display')
 
-const inputNumber = (n) => {
-    return displayNumber += n
+function input () {
+    numberButtons.forEach(node => {
+        node.addEventListener('click', (n) => {
+            display.textContent = node.textContent
+            displayValue = node.textContent
+        })
+    })
 }
 
-//on click event add number to displayNumber then add dN to display
-
-console.log(inputNumber(3))
+input()
