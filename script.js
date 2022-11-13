@@ -1,16 +1,16 @@
-const addition = (x,y) => display.textContent = x+y;
-const subtract = (x,y) => display.textContent = x-y;
-const multiply = (x,y) => display.textContent = x*y;
-const divide = (x,y) => display.textContent = x/y;
-const percent = y => display.textContent = y/100;
+// const addition = (x,y) => display.textContent = x+y;
+// const subtract = (x,y) => display.textContent = x-y;
+// const multiply = (x,y) => display.textContent = x*y;
+// const divide = (x,y) => display.textContent = x/y;
+// const percent = y => display.textContent = y/100;
 
 function operate (x,y,z) {
     switch (z) {
-        case '+': return addition(x,y);
-        case '-': return subtract(x,y);
-        case '*': return multiply(x,y);
-        case '/': return divide(x,y);
-        case '%': return percent(x);
+        case '+': return display.textContent = fitNumberToScreen(x+y);
+        case '-': return display.textContent = fitNumberToScreen(x-y);
+        case 'x': return display.textContent = fitNumberToScreen(x*y);
+        case '/': return display.textContent = fitNumberToScreen(x/y);
+        case '%': return display.textContent = fitNumberToScreen(y/100);
     }
 }
 const display = document.querySelector('.display')
@@ -21,12 +21,12 @@ numberButtons.forEach(node => {
         if (operatorPressed === true) {
             allClear()
         }  
-        if (display.textContent == 0) {
-            display.textContent = node.textContent
-            // displayValue = node.textContent
-        } else if (display.textContent != 0){
-            display.textContent += node.textContent
-            // displayValue += node.textContent
+        if (display.textContent.length<12) {
+            if (display.textContent === '0') {
+                display.textContent = node.textContent
+            } else if (display.textContent != 0){
+                display.textContent += node.textContent
+            }
         }
     })
 })
@@ -58,26 +58,34 @@ const equalButton = document.querySelector('.equal')
 equalButton.addEventListener('click', () => {
     operate(+firstOperand, +display.textContent, operator)
     operatorPressed = false
-    console.log(firstOperand, display.textContent, operator)
 })
 
 const percentButton = document.querySelector('.percent')
-percentButton.addEventListener('click', () => display.textContent = firstOperand/100)
+percentButton.addEventListener('click', () => display.textContent = display.textContent/100)
 
-//     press number, assign dV and node text
-//press plus, assign operand and operator values in variables.
-    //event listener boolean shows operator pressed and will clear before new nums
-//press second number, replaces dV and node
-//press more numbers if desired
-//press equal, call the operator func with operands
-//dV and node equal result and store the operand in the firstOp variable
+const decimal = document.querySelector('.decimal')
+decimal.addEventListener('click', () => {
+    if (display.textContent.split('').includes('.')) {
+        return
+    }
+    display.textContent += '.'
+})
 
-//ac should also clear operator pressed boolean
+function fitNumberToScreen (n) {
+    let numArr = Array.from(n)
+    console.log(numArr)
+    console.log(numArr.length)
+    if (numArr.length>12) {
+       if (n<100000000000) {
+            display.textContent = (Math.round(n*10)/10).slice(0,13)
+       }
+        
 
+    }
+}
 
-
-
-
+//fitNumberToScreen needs some work. It might be easier to leave the numbers as 
+//strings until the very last StereoPannerNode.
 
 
 //operator symbols: 
