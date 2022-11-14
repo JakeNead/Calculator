@@ -1,8 +1,6 @@
-// const addition = (x,y) => display.textContent = x+y;
-// const subtract = (x,y) => display.textContent = x-y;
-// const multiply = (x,y) => display.textContent = x*y;
-// const divide = (x,y) => display.textContent = x/y;
-// const percent = y => display.textContent = y/100;
+let firstOperand = 0
+let operator = ''
+let operatorPressed = false;
 
 function operate (x,y,z) {
     switch (z) {
@@ -13,6 +11,20 @@ function operate (x,y,z) {
         case '%': return display.textContent = fitNumberToScreen(y/100);
     }
 }
+
+function fitNumberToScreen (n) {
+    let numberArray = String(n)
+    if (numberArray.length <= 12) {
+        return display.textContent = numberArray
+    } else if (numberArray.length > 12) {
+       if (n<100000000000) {
+            return display.textContent = numberArray.slice(0,13)
+       } else {
+        return display.textContent = 'Error # too big'
+       }
+    }
+}
+
 const display = document.querySelector('.display')
 
 const numberButtons = document.querySelectorAll('.num')
@@ -24,28 +36,29 @@ numberButtons.forEach(node => {
         if (display.textContent.length<12) {
             if (display.textContent === '0') {
                 display.textContent = node.textContent
-            } else if (display.textContent != 0){
+            } else if (display.textContent != '0'){
                 display.textContent += node.textContent
             }
         }
     })
 })
 
-let firstOperand = 0
-let operator = ''
-let operatorPressed = false;
-
-// AC button event listener to clear the calculator
 const ac = document.querySelector('.ac')
-let allClear = () => {
-    // displayValue = 0
+const allClear = () => {
     display.textContent = 0
     // firstOperand = 0
     operatorPressed = false
 }
 ac.addEventListener('click', () => allClear())
 
-//Operator event listeners
+const numberSign = document.querySelector('.numberSign')
+numberSign.addEventListener('click', () =>  {
+    display.textContent = String(+display.textContent*-1)  
+})
+
+const percentButton = document.querySelector('.percent')
+percentButton.addEventListener('click', () => display.textContent = display.textContent/100)
+
 const operatorButtons = document.querySelectorAll('.operator')
 operatorButtons.forEach(node => {
     node.addEventListener('click', () => {
@@ -60,8 +73,6 @@ equalButton.addEventListener('click', () => {
     operatorPressed = false
 })
 
-const percentButton = document.querySelector('.percent')
-percentButton.addEventListener('click', () => display.textContent = display.textContent/100)
 
 const decimal = document.querySelector('.decimal')
 decimal.addEventListener('click', () => {
@@ -71,24 +82,10 @@ decimal.addEventListener('click', () => {
     display.textContent += '.'
 })
 
-function fitNumberToScreen (n) {
-    let numArr = Array.from(n)
-    console.log(numArr)
-    console.log(numArr.length)
-    if (numArr.length>12) {
-       if (n<100000000000) {
-            display.textContent = (Math.round(n*10)/10).slice(0,13)
-       }
-        
 
-    }
-}
-
-//fitNumberToScreen needs some work. It might be easier to leave the numbers as 
-//strings until the very last StereoPannerNode.
 
 
 //operator symbols: 
 //division - &#247 
 //multiplication - &#215
-//subtrraction - &#8722;
+//subtraction - &#8722;
