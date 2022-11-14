@@ -5,9 +5,9 @@ let operatorPressed = false;
 function operate (x,y,z) {
     switch (z) {
         case '+': return display.textContent = fitNumberToScreen(x+y);
-        case '-': return display.textContent = fitNumberToScreen(x-y);
-        case 'x': return display.textContent = fitNumberToScreen(x*y);
-        case '/': return display.textContent = fitNumberToScreen(x/y);
+        case '\u2212': return display.textContent = fitNumberToScreen(x-y);
+        case '\xD7': return display.textContent = fitNumberToScreen(x*y);
+        case '\xF7': return display.textContent = fitNumberToScreen(x/y);
         case '%': return display.textContent = fitNumberToScreen(y/100);
     }
 }
@@ -46,7 +46,6 @@ numberButtons.forEach(node => {
 const ac = document.querySelector('.ac')
 const allClear = () => {
     display.textContent = 0
-    // firstOperand = 0
     operatorPressed = false
 }
 ac.addEventListener('click', () => allClear())
@@ -67,12 +66,13 @@ operatorButtons.forEach(node => {
         operator = node.textContent;
     })
 })
+
 const equalButton = document.querySelector('.equal')
 equalButton.addEventListener('click', () => {
+    console.log(typeof operator)
     operate(+firstOperand, +display.textContent, operator)
     operatorPressed = false
 })
-
 
 const decimal = document.querySelector('.decimal')
 decimal.addEventListener('click', () => {
@@ -81,11 +81,3 @@ decimal.addEventListener('click', () => {
     }
     display.textContent += '.'
 })
-
-
-
-
-//operator symbols: 
-//division - &#247 
-//multiplication - &#215
-//subtraction - &#8722;
