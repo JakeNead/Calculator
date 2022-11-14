@@ -14,11 +14,14 @@ function operate (x,y,z) {
 
 function fitNumberToScreen (n) {
     let numberArray = String(n)
-    if (numberArray.length <= 12) {
+    if (n =n= 'Infinity' || n === 'NaN'){
+        return display.textContent = 'Error!'
+    }
+    if (numberArray.length <= 11) {
         return display.textContent = numberArray
-    } else if (numberArray.length > 12) {
+    } else if (numberArray.length > 11) {
        if (n<100000000000) {
-            return display.textContent = numberArray.slice(0,13)
+            return display.textContent = numberArray.slice(0,12)
        } else {
         return display.textContent = 'Error # too big'
        }
