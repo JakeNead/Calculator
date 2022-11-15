@@ -14,7 +14,8 @@ function operate (x,y,z) {
 
 function fitNumberToScreen (n) {
     let numberArray = String(n)
-    if (n =n= 'Infinity' || n === 'NaN'){
+    console.log(typeof n)
+    if (n === Infinity || n === NaN){
         return display.textContent = 'Error!'
     }
     if (numberArray.length <= 11) {
@@ -72,7 +73,6 @@ operatorButtons.forEach(node => {
 
 const equalButton = document.querySelector('.equal')
 equalButton.addEventListener('click', () => {
-    console.log(typeof operator)
     operate(+firstOperand, +display.textContent, operator)
     operatorPressed = false
 })
