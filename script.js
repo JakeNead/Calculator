@@ -14,8 +14,7 @@ function operate (x,y,z) {
 
 function fitNumberToScreen (n) {
     let numberArray = String(n)
-    console.log(typeof n)
-    if (n === Infinity || n === NaN){
+    if (n === Infinity || isNaN(n)) {
         return display.textContent = 'Error!'
     }
     if (numberArray.length <= 11) {
